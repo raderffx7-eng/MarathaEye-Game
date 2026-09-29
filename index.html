@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maratha Eye - Battle Royale</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Splash Screen -->
+    <div id="splash-screen" class="screen active">
+        <div class="splash-container">
+            <div class="splash-logo">
+                <h1>MARATHA EYE</h1>
+                <p class="subtitle">Battle Royale</p>
+            </div>
+            <div class="splash-footer">
+                <p>Tap to continue...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="screen">
+        <div class="loading-container">
+            <h2>Loading Game</h2>
+            <div class="loading-bar-container">
+                <div class="loading-bar" id="loading-bar"></div>
+            </div>
+            <p id="loading-text">0%</p>
+        </div>
+    </div>
+
+    <!-- Guest Login Screen -->
+    <div id="login-screen" class="screen">
+        <div class="login-container">
+            <h2>Welcome to Maratha Eye</h2>
+            <div class="login-options">
+                <button class="btn btn-guest" id="guest-btn">
+                    <span class="icon">👤</span>
+                    Play as Guest
+                </button>
+                <p class="divider">OR</p>
+                <button class="btn btn-account">
+                    <span class="icon">📧</span>
+                    Sign In (Coming Soon)
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Name Selection Screen -->
+    <div id="name-screen" class="screen">
+        <div class="name-container">
+            <h2>Choose Your Name</h2>
+            <p class="name-subtitle">Select a unique name for your player</p>
+            <div class="name-input-group">
+                <input type="text" id="player-name-input" placeholder="Enter your player name" maxlength="16">
+                <p class="name-hint" id="name-hint">3-16 characters allowed</p>
+            </div>
+            <button class="btn btn-confirm" id="confirm-name-btn">CONFIRM</button>
+        </div>
+    </div>
+
+    <!-- Main Lobby Screen -->
+    <div id="lobby-screen" class="screen">
+        <div class="lobby-header">
+            <div class="player-info">
+                <h3 id="lobby-player-name">Player Name</h3>
+                <p id="lobby-level">Level: 1</p>
+            </div>
+            <button class="btn btn-logout" id="logout-btn">Logout</button>
+        </div>
+
+        <div class="lobby-main">
+            <div class="lobby-banner">
+                <h1>Welcome to Maratha Eye</h1>
+                <p>Choose what to do next</p>
+            </div>
+
+            <div class="lobby-buttons">
+                <button class="lobby-btn" id="start-btn">
+                    <span class="icon">🎮</span>
+                    <span class="text">START GAME</span>
+                </button>
+                <button class="lobby-btn" id="settings-btn">
+                    <span class="icon">⚙️</span>
+                    <span class="text">SETTINGS</span>
+                </button>
+                <button class="lobby-btn" id="vault-btn">
+                    <span class="icon">🔓</span>
+                    <span class="text">VAULT</span>
+                </button>
+                <button class="lobby-btn" id="profile-btn">
+                    <span class="icon">👤</span>
+                    <span class="text">PROFILE</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Screen -->
+    <div id="settings-screen" class="screen">
+        <div class="settings-container">
+            <div class="settings-header">
+                <h2>Settings</h2>
+                <button class="btn-close" id="close-settings">✕</button>
+            </div>
+
+            <div class="settings-tabs">
+                <button class="tab-btn active" data-tab="gameplay">Gameplay</button>
+                <button class="tab-btn" data-tab="graphics">Graphics</button>
+                <button class="tab-btn" data-tab="audio">Audio</button>
+            </div>
+
+            <!-- Gameplay Tab -->
+            <div id="gameplay-tab" class="tab-content active">
+                <div class="setting-item">
+                    <label>HUD Sensitivity</label>
+                    <div class="slider-group">
+                        <input type="range" id="hud-sensitivity" min="0" max="100" value="50" class="slider">
+                        <span class="slider-value" id="hud-sensitivity-value">50</span>
+                    </div>
+                </div>
+
+                <div class="setting-item">
+                    <label>Mouse Sensitivity</label>
+                    <div class="slider-group">
+                        <input type="range" id="mouse-sensitivity" min="0" max="100" value="50" class="slider">
+                        <span class="slider-value" id="mouse-sensitivity-value">50</span>
+                    </div>
+                </div>
+
+                <div class="setting-item">
+                    <label>ADS Sensitivity</label>
+                    <div class="slider-group">
+                        <input type="range" id="ads-sensitivity" min="0" max="100" value="50" class="slider">
+                        <span class="slider-value" id="ads-sensitivity-value">50</span>
+                    </div>
+                </div>
+
+                <div class="setting-item">
+                    <label>Aim Assist</label>
+                    <label class="toggle">
+                        <input type="checkbox" id="aim-assist" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+
+                <div class="setting-item">
+                    <label>Show Framerate</label>
+                    <label class="toggle">
+                        <input type="checkbox" id="show-fps">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Graphics Tab -->
+            <div id="graphics-tab" class="tab-content">
+                <div class="setting-item">
+                    <label>Graphics Quality</label>
+                    <select id="graphics-quality">
+                        <option value="low">Low</option>
+                        <option value="medium" selected>Medium</option>
+                        <option value="high">High</option>
+                        <option value="ultra">Ultra</option>
+                    </select>
+                </div>
+
+                <div class="setting-item">
+                    <label>Brightness</label>
+                    <div class="slider-group">
+                        <input type="range" id="brightness" min="0" max="100" value="50" class="slider">
+                        <span class="slider-value" id="brightness-value">50</span>
+                    </div>
+                </div>
+
+                <div class="setting-item">
+                    <label>Anti-Aliasing</label>
+                    <label class="toggle">
+                        <input type="checkbox" id="anti-aliasing" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+
+                <div class="setting-item">
+                    <label>Motion Blur</label>
+                    <label class="toggle">
+                        <input type="checkbox" id="motion-blur">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Audio Tab -->
+            <div id="audio-tab" class="tab-content">
+                <div class="setting-item">
+                    <label>Master Volume</label>
+                    <div class="slider-group">
+                        <input type="range" id="master-volume" min="0" max="100" value="70" class="slider">
+                        <span class="slider-value" id="master-volume-value">70</span>
+                    </div>
+                </div>
+
+                <div class="setting-item">
+                    <label>Music Volume</label>
+                    <div class="slider-group">
+                        <input type="range" id="music-volume" min="0" max="100" value="50" class="slider">
+                        <span class="slider-value" id="music-volume-value">50</span>
+                    </div>
+                </div>
+
+                <div class="setting-item">
+                    <label>SFX Volume</label>
+                    <div class="slider-group">
+                        <input type="range" id="sfx-volume" min="0" max="100" value="70" class="slider">
+                        <span class="slider-value" id="sfx-volume-value">70</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Vault Screen -->
+    <div id="vault-screen" class="screen">
+        <div class="vault-container">
+            <div class="vault-header">
+                <h2>VAULT</h2>
+                <button class="btn-close" id="close-vault">✕</button>
+            </div>
+            <div class="vault-content">
+                <p>Vault is empty. Complete matches to unlock items!</p>
+                <div class="vault-items">
+                    <!-- Items will be added here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Screen -->
+    <div id="profile-screen" class="screen">
+        <div class="profile-container">
+            <div class="profile-header">
+                <button class="btn-close" id="close-profile">✕</button>
+            </div>
+            <div class="profile-content">
+                <div class="profile-avatar">
+                    <div class="avatar-placeholder">👤</div>
+                </div>
+                <h2 id="profile-name">Player Name</h2>
+                <div class="profile-stats">
+                    <div class="stat">
+                        <span class="stat-label">Matches Played</span>
+                        <span class="stat-value" id="stat-matches">0</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Wins</span>
+                        <span class="stat-value" id="stat-wins">0</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Kills</span>
+                        <span class="stat-value" id="stat-kills">0</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Level</span>
+                        <span class="stat-value" id="stat-level">1</span>
+                    </div>
+                </div>
+                <div class="profile-badges">
+                    <h3>Badges</h3>
+                    <p>Complete challenges to earn badges!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Preparation Lobby (60 sec countdown) -->
+    <div id="preparation-screen" class="screen">
+        <div class="preparation-container">
+            <h2>PREPARATION</h2>
+            <p>Game Starting In...</p>
+            <div class="countdown-timer">
+                <span id="countdown">60</span>
+                <p>seconds</p>
+            </div>
+            <div class="player-list">
+                <h3>Players Ready: <span id="players-count">1</span>/50</h3>
+                <div id="player-list-items">
+                    <!-- Player list will be added here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Plane Screen (Jump) -->
+    <div id="plane-screen" class="screen">
+        <div class="plane-container">
+            <div class="plane-info">
+                <h2>PLANE FLYING</h2>
+                <p>Altitude: <span id="altitude">5000</span>m</p>
+                <p>Speed: <span id="plane-speed">200</span> km/h</p>
+            </div>
+            <div class="plane-viewport">
+                <canvas id="plane-canvas" width="800" height="600"></canvas>
+            </div>
+            <div class="jump-instruction">
+                <p>Press <strong>SPACE</strong> to JUMP or wait for optimal location</p>
+                <button class="btn btn-jump" id="jump-btn">JUMP NOW</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Parachute Screen (Landing) -->
+    <div id="parachute-screen" class="screen">
+        <div class="parachute-container">
+            <canvas id="parachute-canvas" width="800" height="600"></canvas>
+            <div class="parachute-hud">
+                <p>Altitude: <span id="para-altitude">1000</span>m</p>
+                <p>Use <strong>ARROW KEYS</strong> to steer, <strong>SPACE</strong> to deploy</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Island/Game World (Basic) -->
+    <div id="game-screen" class="screen">
+        <div class="game-container">
+            <canvas id="game-canvas" width="1600" height="900"></canvas>
+            <div class="game-hud">
+                <div class="hud-left">
+                    <div class="health-bar">
+                        <div class="health-fill" id="health-fill"></div>
+                    </div>
+                    <p id="health-text">100 HP</p>
+                </div>
+                <div class="hud-center">
+                    <div class="crosshair"></div>
+                </div>
+                <div class="hud-right">
+                    <div class="weapon-info">
+                        <p id="weapon-name">M16A4</p>
+                        <p id="ammo-count">30 / 120</p>
+                    </div>
+                </div>
+                <div class="hud-bottom">
+                    <div class="inventory">
+                        <div class="inv-slot" id="slot-1"></div>
+                        <div class="inv-slot" id="slot-2"></div>
+                        <div class="inv-slot" id="slot-3"></div>
+                        <div class="inv-slot" id="slot-4"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
